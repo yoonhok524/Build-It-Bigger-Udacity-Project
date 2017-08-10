@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">jokeActivity</string>
+    <string name="key_joke" translatable="false">key_joke</string>
+</resources>

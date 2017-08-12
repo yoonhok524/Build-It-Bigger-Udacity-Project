@@ -1,12 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -23,9 +26,10 @@ import butterknife.OnClick;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements JokeListener {
 
     @BindView(R.id.btn_tell_joke) Button mBtnTellJoke;
+    @BindView(R.id.progressbar) ProgressBar mProgressBar;
     @BindView(R.id.adView) AdView mAdView;
 
     public MainActivityFragment() {
@@ -49,10 +53,15 @@ public class MainActivityFragment extends Fragment {
 
     @OnClick(R.id.btn_tell_joke)
     public void onClickTellJoke() {
-        Joker joker = new Joker();
+        mProgressBar.setVisibility(View.VISIBLE);
+        new EndpointsAsyncTask(this).execute();
+    }
 
+    @Override
+    public void onLoadJoke(String joke) {
+        mProgressBar.setVisibility(View.GONE);
         Intent intent = new Intent(getContext(), JokeActivity.class);
-        intent.putExtra(getString(R.string.key_joke), joker.getJoke());
+        intent.putExtra(getString(R.string.key_joke), joke);
         startActivity(intent);
     }
 }

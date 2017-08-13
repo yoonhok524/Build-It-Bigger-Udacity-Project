@@ -41,7 +41,6 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String joke) {
-        Log.d("TEST", "joke: " + joke);
         mJokeListener.onLoadJoke(joke);
     }
 }

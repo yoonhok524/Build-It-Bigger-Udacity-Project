@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import com.example.Joker;
 import com.youknow.jokeactivity.JokeActivity;
 
 import butterknife.BindView;
